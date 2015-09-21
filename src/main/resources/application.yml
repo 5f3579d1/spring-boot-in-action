@@ -1,0 +1,28 @@
+spring:
+    profiles:
+        active: development
+
+---
+debug: true
+spring:
+    profiles: development
+    jpa:
+        generate-ddl: true
+
+logging.level.org.springframework.security: INFO
+
+---
+spring:
+    profiles: production
+    main:
+        show_banner: false
+    datasource:
+        url: jdbc:mysql://hostname/db
+        username: user
+        password: password
+        driver-class-name: com.mysql.jdbc.Driver
+    jpa:
+        generate-ddl: false
+
+server:
+    port: 80
