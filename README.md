@@ -1,9 +1,13 @@
 # spring-boot-demo
 
-### Install
+## Install
 
     brew install gradle
 
-### Run
+## Build
 
-    gradle build && gradle bootRun
+    gradle build
+
+## Run
+
+    gradle bootRun
