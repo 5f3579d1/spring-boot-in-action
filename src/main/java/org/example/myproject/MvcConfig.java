@@ -14,11 +14,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by k on 9/18/15.
  */
 @Configuration
-public class MvcConfiguration extends WebMvcConfigurerAdapter {
+public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/admin/login").setViewName("login");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

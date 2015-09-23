@@ -2,6 +2,9 @@ spring:
     profiles:
         active: development
 
+management:
+    context-path: /
+
 ---
 debug: true
 spring:
@@ -9,19 +12,15 @@ spring:
     jpa:
         generate-ddl: true
 
+
 ---
 spring:
     profiles: production
-    main:
-        show_banner: false
     datasource:
-        url: jdbc:mysql://hostname/db
-        username: user
-        password: password
+        url: jdbc:mysql://www.zhongerp.com/wenhua
+        username: wenhua
+        password: wenhua123456
         driver-class-name: com.mysql.jdbc.Driver
     jpa:
         hibernate:
-            ddl-auto: validate
-
-server:
-    port: 80
+            ddl-auto: create-drop

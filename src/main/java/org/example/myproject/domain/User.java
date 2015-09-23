@@ -1,6 +1,9 @@
 package org.example.myproject.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -12,16 +15,17 @@ import java.util.Set;
 public class User extends BaseModel {
 
     @NotNull
+    @Column(length = 32)
     private String username;
 
-    @NotNull
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false, length = 128)
     private String password;
 
     private String email;
 
     @NotNull
-    private boolean enable = true;
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private Boolean enable = Boolean.TRUE;
 
     @ManyToMany
     protected Set<Role> roles;
