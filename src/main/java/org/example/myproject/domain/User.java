@@ -66,4 +66,15 @@ public class User extends BaseModel {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", enable=" + enable +
+                ", roles=" + roles +
+                '}';
+    }
+
 }
