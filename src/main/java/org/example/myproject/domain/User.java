@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "whw_user")
 public class User extends BaseModel {
 
     @NotNull

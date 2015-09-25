@@ -44,6 +44,8 @@ dependencies {
     runtime("mysql:mysql-connector-java")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
+    compile 'org.apache.httpcomponents:httpclient:4.5'
+
 }
 
 

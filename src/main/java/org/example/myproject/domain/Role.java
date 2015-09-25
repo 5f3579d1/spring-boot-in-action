@@ -1,11 +1,13 @@
 package org.example.myproject.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by k on 9/16/15.
  */
 @Entity
+@Table(name = "whw_role")
 public class Role extends BaseModel {
 
     private String code;

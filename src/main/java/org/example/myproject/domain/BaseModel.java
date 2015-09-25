@@ -11,8 +11,17 @@ public abstract class BaseModel implements Serializable {
     @GeneratedValue
     protected Long id;
 
+    /**
+     * 创建时间
+     */
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyTime;
 
     @PrePersist
     protected void preCreate() {
@@ -33,6 +42,14 @@ public abstract class BaseModel implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 
 }

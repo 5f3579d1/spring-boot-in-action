@@ -3,7 +3,7 @@ spring:
         active: development
 
 management:
-    context-path: /
+    context-path: /actuator
 
 ---
 debug: true
@@ -12,14 +12,13 @@ spring:
     jpa:
         generate-ddl: true
 
-
 ---
 spring:
     profiles: production
     datasource:
-        url: jdbc:mysql://www.zhongerp.com/wenhua
-        username: wenhua
-        password: wenhua123456
+        url: jdbc:mysql://121.43.109.196/wenhua
+        username: root
+        password: wenhuawenhua
         driver-class-name: com.mysql.jdbc.Driver
     jpa:
         hibernate:

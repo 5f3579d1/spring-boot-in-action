@@ -1,5 +1,7 @@
 package org.example.myproject.securtity;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.example.myproject.domain.User;
 import org.example.myproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class CurrentUserDetailsService implements UserDetailsService {
 
+    private final Log log = LogFactory.getLog(getClass());
+
     @Autowired
     private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        log.info("load user: " + username);
 
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username=%s was not found", username)));
