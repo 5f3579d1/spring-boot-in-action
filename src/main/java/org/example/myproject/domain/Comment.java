@@ -9,7 +9,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "whw_comment")
-public class Comment extends BaseModel {
+public class Comment extends TransactionalEntity {
 
     /**
      * 留言的用户名,qq号或者第三方账号
@@ -30,7 +30,7 @@ public class Comment extends BaseModel {
     /**
      * 所属栏目ID
      */
-    private String parentmenu;
+    private String parentMenu;
 
     public String getUsername() {
         return username;
@@ -56,12 +56,12 @@ public class Comment extends BaseModel {
         this.state = state;
     }
 
-    public String getParentmenu() {
-        return parentmenu;
+    public String getParentMenu() {
+        return parentMenu;
     }
 
-    public void setParentmenu(String parentmenu) {
-        this.parentmenu = parentmenu;
+    public void setParentMenu(String parentMenu) {
+        this.parentMenu = parentMenu;
     }
 
 }

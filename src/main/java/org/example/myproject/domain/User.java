@@ -12,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "whw_user")
-public class User extends BaseModel {
+public class User extends TransactionalEntity {
 
     @NotNull
     @Column(length = 32)

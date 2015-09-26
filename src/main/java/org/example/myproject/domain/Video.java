@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "whw_video")
-public class Video extends BaseModel {
+public class Video extends TransactionalEntity {
 
     /**
      * 视频名称

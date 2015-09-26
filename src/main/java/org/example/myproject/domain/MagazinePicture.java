@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "whw_magazine_pic")
-public class MagazinePicture extends BaseModel {
+public class MagazinePicture extends TransactionalEntity {
 
     /**
      * 杂志名称
@@ -23,7 +23,7 @@ public class MagazinePicture extends BaseModel {
     /**
      * 图片序列，可以对图片的展示排序进行调整，如为空，则按照id大小排序
      */
-    private String position;
+    private Integer position;
 
     /**
      * 创建人的用户名
@@ -54,11 +54,11 @@ public class MagazinePicture extends BaseModel {
         this.state = state;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 

@@ -8,7 +8,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "whw_role")
-public class Role extends BaseModel {
+public class Role extends TransactionalEntity {
 
     private String code;
 

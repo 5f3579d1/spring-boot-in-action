@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "whw_article")
-public class Article extends BaseModel {
+public class Article extends TransactionalEntity {
 
     /**
      * 文章名称
@@ -60,7 +60,7 @@ public class Article extends BaseModel {
     /**
      * 文章序列，可以对文章的展示排序进行调整，如为空，则按照id大小排序
      */
-    private String position;
+    private Integer position;
 
     public String getTitle() {
         return title;
@@ -126,11 +126,11 @@ public class Article extends BaseModel {
         this.modifyor = modifyor;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 

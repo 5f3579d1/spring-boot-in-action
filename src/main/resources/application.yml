@@ -5,6 +5,11 @@ spring:
 management:
     context-path: /actuator
 
+ueditor:
+    config:
+        json:
+            path: 'classpath:UEConfig.json'
+
 ---
 debug: true
 spring:
@@ -16,7 +21,7 @@ spring:
 spring:
     profiles: production
     datasource:
-        url: jdbc:mysql://121.43.109.196/wenhua
+        url: jdbc:mysql://121.43.109.196/wenhua?useUnicode=yes&characterEncoding=UTF-8
         username: root
         password: wenhuawenhua
         driver-class-name: com.mysql.jdbc.Driver

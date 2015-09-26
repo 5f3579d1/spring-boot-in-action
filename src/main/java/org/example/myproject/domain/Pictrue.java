@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "whw_pictrue")
-public class Pictrue extends BaseModel {
+public class Pictrue extends TransactionalEntity {
 
     /**
      * 图片名称

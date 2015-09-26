@@ -9,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "whw_magazine")
-public class Magazine extends BaseModel {
+public class Magazine extends TransactionalEntity {
 
     /**
      * 杂志名称
@@ -30,7 +30,7 @@ public class Magazine extends BaseModel {
     /**
      * 杂志序列，可以对图片的展示排序进行调整，如为空，则按照id大小排序
      */
-    private String position;
+    private Integer position;
 
     /**
      * 创建人的用户名
@@ -71,11 +71,11 @@ public class Magazine extends BaseModel {
         this.parentMenu = parentMenu;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
