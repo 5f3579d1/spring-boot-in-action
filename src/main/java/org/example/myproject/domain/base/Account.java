@@ -1,31 +1,38 @@
-package org.example.myproject.domain;
+package org.example.myproject.domain.base;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_user")
-public class User extends TransactionalEntity {
+public class Account extends TransactionalEntity {
 
-    @NotNull
-    @Column(length = 32)
+    @Column(nullable = false, length = 32)
     private String username;
 
+    @JsonIgnore
     @Column(nullable = false, length = 128)
     private String password;
 
     private String email;
 
-    @NotNull
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private Boolean enable = Boolean.TRUE;
+    private boolean enable = Boolean.TRUE;
+
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean credentialsExpired = false;
+
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean expired = false;
+
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean locked = false;
 
     @ManyToMany
     protected Set<Role> roles;
@@ -62,6 +69,30 @@ public class User extends TransactionalEntity {
         this.enable = enable;
     }
 
+    public boolean isCredentialsExpired() {
+        return credentialsExpired;
+    }
+
+    public void setCredentialsExpired(boolean credentialsExpired) {
+        this.credentialsExpired = credentialsExpired;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -72,7 +103,7 @@ public class User extends TransactionalEntity {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Account{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

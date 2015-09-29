@@ -1,5 +1,8 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +11,6 @@ import java.util.List;
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_magazine")
 public class Magazine extends TransactionalEntity {
 
     /**
@@ -36,13 +38,13 @@ public class Magazine extends TransactionalEntity {
      * 创建人的用户名
      */
     @ManyToOne
-    private User creator;
+    private Account creator;
 
     /**
      * 修改人的用户名
      */
     @ManyToOne
-    private User modifyor;
+    private Account modifier;
 
     @OneToMany(mappedBy = "magazine")
     private List<MagazinePicture> pictures = new ArrayList<>();
@@ -55,11 +57,11 @@ public class Magazine extends TransactionalEntity {
         this.title = title;
     }
 
-    public Integer getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -79,20 +81,20 @@ public class Magazine extends TransactionalEntity {
         this.position = position;
     }
 
-    public User getCreator() {
+    public Account getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(Account creator) {
         this.creator = creator;
     }
 
-    public User getModifyor() {
-        return modifyor;
+    public Account getModifier() {
+        return modifier;
     }
 
-    public void setModifyor(User modifyor) {
-        this.modifyor = modifyor;
+    public void setModifier(Account modifier) {
+        this.modifier = modifier;
     }
 
     public List<MagazinePicture> getPictures() {

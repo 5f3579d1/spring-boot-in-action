@@ -1,14 +1,14 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_comment")
 public class Comment extends TransactionalEntity {
 
     /**

@@ -1,15 +1,16 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_article")
 public class Article extends TransactionalEntity {
 
     /**
@@ -18,26 +19,20 @@ public class Article extends TransactionalEntity {
     private String title;
 
     /**
-     * 0代表草稿，1代表发布，2代表顶置，-1代表删除
-     */
-    @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private Integer state;
-
-    /**
      * 文章内容
      */
     @Column(columnDefinition = "text")
     private String content;
 
     /**
-     * 所属栏目ID
-     */
-    private Integer parentMenu;
-
-    /**
      * 关键字
      */
     private String keyword;
+
+    /**
+     * 所属栏目ID
+     */
+    private Integer parentMenu;
 
     /**
      * 是否推荐, Y表示推荐, N反之
@@ -46,21 +41,27 @@ public class Article extends TransactionalEntity {
     private Character recommend = 'Y';
 
     /**
-     * 创建人的用户名
+     * 0代表草稿，1代表发布，2代表顶置，-1代表删除
      */
-    @ManyToOne
-    private User creator;
-
-    /**
-     * 修改人的用户名
-     */
-    @ManyToOne
-    private User modifyor;
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private Integer state;
 
     /**
      * 文章序列，可以对文章的展示排序进行调整，如为空，则按照id大小排序
      */
     private Integer position;
+
+    /**
+     * 创建人的用户名
+     */
+    @ManyToOne
+    private Account creator;
+
+    /**
+     * 修改人的用户名
+     */
+    @ManyToOne
+    private Account Modifier;
 
     public String getTitle() {
         return title;
@@ -70,11 +71,11 @@ public class Article extends TransactionalEntity {
         this.title = title;
     }
 
-    public Integer getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -86,11 +87,11 @@ public class Article extends TransactionalEntity {
         this.content = content;
     }
 
-    public Integer getParentMenu() {
+    public int getParentMenu() {
         return parentMenu;
     }
 
-    public void setParentMenu(Integer parentMenu) {
+    public void setParentMenu(int parentMenu) {
         this.parentMenu = parentMenu;
     }
 
@@ -110,28 +111,28 @@ public class Article extends TransactionalEntity {
         this.recommend = recommend;
     }
 
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
-
-    public User getModifyor() {
-        return modifyor;
-    }
-
-    public void setModifyor(User modifyor) {
-        this.modifyor = modifyor;
-    }
-
-    public Integer getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(int position) {
         this.position = position;
+    }
+
+    public Account getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Account creator) {
+        this.creator = creator;
+    }
+
+    public Account getModifier() {
+        return Modifier;
+    }
+
+    public void setModifier(Account modifier) {
+        this.Modifier = modifier;
     }
 
 }

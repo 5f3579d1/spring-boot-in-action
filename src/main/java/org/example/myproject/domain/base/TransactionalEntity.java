@@ -1,4 +1,4 @@
-package org.example.myproject.domain;
+package org.example.myproject.domain.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.example.myproject.util.RequestContext;

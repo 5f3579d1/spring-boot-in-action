@@ -1,15 +1,16 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_video")
 public class Video extends TransactionalEntity {
 
     /**
@@ -31,19 +32,19 @@ public class Video extends TransactionalEntity {
     /**
      * 视频序列，可以对视频的展示排序进行调整，如为空，则按照id大小排序
      */
-    private String position;
+    private Integer position;
 
     /**
      * 创建人的用户名
      */
     @ManyToOne
-    private User creator;
+    private Account creator;
 
     /**
      * 修改人的用户名
      */
     @ManyToOne
-    private User modifyor;
+    private Account modifier;
 
     public String getTitle() {
         return title;
@@ -69,28 +70,28 @@ public class Video extends TransactionalEntity {
         this.parentMenu = parentMenu;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
-    public User getCreator() {
+    public Account getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(Account creator) {
         this.creator = creator;
     }
 
-    public User getModifyor() {
-        return modifyor;
+    public Account getModifier() {
+        return modifier;
     }
 
-    public void setModifyor(User modifyor) {
-        this.modifyor = modifyor;
+    public void setModifier(Account modifier) {
+        this.modifier = modifier;
     }
 
 }

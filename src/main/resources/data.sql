@@ -1,13 +1,14 @@
-INSERT INTO whw_role (`code`, `label`, `CREATED_AT`, `CREATED_BY`, `REFERENCE_ID`)
+INSERT INTO account (`USERNAME`, `PASSWORD`, `ENABLE`, `CREATED_AT`, `CREATED_BY`, `REFERENCE_ID`, `CREDENTIALS_EXPIRED`, `EXPIRED`, `LOCKED`)
 VALUES
- ('1','ADMIN', NOW(), 'init', 'init'),
- ('2','USER', NOW(), 'init', 'init');
+  ('test', '$2a$10$rjvoBv./ZCCHACKYhuT3P..7gPrGcjTCCFOh7aqYxX7egeomE8TpW', TRUE, NOW(), 'init', 'init', FALSE, FALSE,
+   FALSE);
 
-INSERT INTO whw_user (`username`, `password`, `enable`, `CREATED_AT`, `CREATED_BY`, `REFERENCE_ID`)
+INSERT INTO role (`ID`, `CODE`, `LABEL`, `ORDINAL`, `EFFECTIVE_AT`, `EXPIRES_AT`, `CREATED_AT`)
 VALUES
- ('test', '$2a$10$rjvoBv./ZCCHACKYhuT3P..7gPrGcjTCCFOh7aqYxX7egeomE8TpW', true, NOW(), 'init', 'init');
+  (1, 'ADMIN', 'Admin', 1, '2016-01-01 00:00:00', NULL, NOW()),
+  (2, 'USER', 'user', 2, '2016-01-01 00:00:00', NULL, NOW());
 
-INSERT INTO whw_user_roles (`whw_user_id`, `roles_id`)
+INSERT INTO account_roles (`ACCOUNT_ID`, `ROLES_ID`)
 VALUES
- (1, 1),
- (1, 2);
+  (1, 1),
+  (1, 2);

@@ -1,14 +1,14 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Created by k on 9/28/15.
  */
 @Entity
-@Table(name = "whw_menu")
 public class MyMenu extends TransactionalEntity {
 
     /**
@@ -35,7 +35,7 @@ public class MyMenu extends TransactionalEntity {
     /**
      * 栏目序列，可以对栏目的展示排序进行调整，如为空，则按照id大小排序
      */
-    private String position;
+    private Integer position;
 
     public String getName() {
         return name;
@@ -69,11 +69,11 @@ public class MyMenu extends TransactionalEntity {
         this.creator = creator;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 

@@ -1,13 +1,14 @@
 package org.example.myproject.service.impl;
 
-import org.example.myproject.domain.Article;
-import org.example.myproject.repository.ArticleRepository;
-import org.example.myproject.service.ArticleService;
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.repository.AccountRepository;
+import org.example.myproject.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,36 +22,38 @@ import java.util.Optional;
  */
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class ArticleServiceImpl implements ArticleService {
+public class AccountServiceImpl implements AccountService {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public ArticleRepository repository;
+    public AccountRepository repository;
 
     @Override
-    public Page<Article> findAll(Pageable pageable) {
+    public Page<Account> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
     @Override
-    public Optional<Article> findOne(long id) {
-        return Optional.of(repository.findOne(id));
+    public Optional<Account> findOne(long id) {
+        return Optional.ofNullable(repository.findOne(id));
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Optional<Article> create(Article article) {
+    public Optional<Account> create(Account account) {
         logger.info("> create");
 
-        if (article.getId() != null) {
-            logger.error("Attempted to create a Article, but id attribute was not null.");
+        if (account.getId() != null) {
+            logger.error("Attempted to create a Account, but id attribute was not null.");
             logger.info("< create");
             throw new EntityExistsException(
-                    "Cannot create new Article with supplied id.  The id attribute must be null to create an entity.");
+                    "Cannot create new Account with supplied id.  The id attribute must be null to create an entity.");
         }
 
-        Article saved = repository.save(article);
+        account.setPassword(new BCryptPasswordEncoder().encode(account.getPassword()));
+
+        Account saved = repository.save(account);
 
         logger.info("< create");
         return Optional.ofNullable(saved);
@@ -58,21 +61,19 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Optional<Article> update(Article article) {
+    public Optional<Account> update(Account account) {
+        logger.info("> update {}", account.getId());
 
-        logger.info("> update {}", article.getId());
-
-        Article persisted = repository.findOne(article.getId());
+        Account persisted = repository.findOne(account.getId());
         if (persisted == null) {
-            logger.error("Attempted to update a Article, but the entity does not exist.");
-            logger.info("< update {}", article.getId());
-            throw new NoResultException("Requested Article not found.");
+            logger.error("Attempted to update a Account, but the entity does not exist.");
+            logger.info("< update {}", account.getId());
+            throw new NoResultException("Requested Account not found.");
         }
 
-        persisted.setTitle(article.getTitle());
-        persisted.setContent(article.getContent());
+        persisted.setPassword(new BCryptPasswordEncoder().encode(account.getPassword()));
 
-        Article updated = repository.save(persisted);
+        Account updated = repository.save(persisted);
 
         logger.info("< update {}", updated.getId());
         return Optional.ofNullable(updated);
@@ -89,14 +90,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Optional<Article> findByKeyword(String keyword) {
-        logger.info("> find by keyword: {}", keyword);
-
-        Article article = repository.findByKeyword(keyword);
-
-        logger.info("< find by keyword: {}", keyword);
-
-        return Optional.ofNullable(article);
+    public Optional<Account> findByUsername(String username) {
+        return repository.findByUsername(username);
     }
 
 }

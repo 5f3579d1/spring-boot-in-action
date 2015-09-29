@@ -1,7 +1,7 @@
 package org.example.myproject.securtity;
 
-import org.example.myproject.domain.User;
-import org.example.myproject.service.UserService;
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.service.AccountService;
 import org.example.myproject.util.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,20 +24,20 @@ public class CurrentUserDetailsService implements UserDetailsService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private UserService userService;
+    private AccountService accountService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        logger.info("load user: " + username);
+        logger.info("load account: " + username);
 
-        User user = userService.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username=%s was not found", username)));
+        Account account = accountService.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("Account with username=%s was not found", username)));
 
         RequestContext.setUsername(username);
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), AuthorityUtils.createAuthorityList(user.getRoles().toString()));
+        return new org.springframework.security.core.userdetails.User(account.getUsername(),
+                account.getPassword(), AuthorityUtils.createAuthorityList(account.getRoles().toString()));
     }
 
 }

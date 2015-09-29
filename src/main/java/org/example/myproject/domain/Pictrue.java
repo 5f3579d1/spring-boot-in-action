@@ -1,15 +1,16 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_pictrue")
 public class Pictrue extends TransactionalEntity {
 
     /**
@@ -21,7 +22,7 @@ public class Pictrue extends TransactionalEntity {
      * 0代表草稿，1代表发布， -1代表删除
      */
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private Integer state;
+    private int state;
 
     /**
      * 图片说明
@@ -31,24 +32,24 @@ public class Pictrue extends TransactionalEntity {
     /**
      * 所属栏目ID
      */
-    private String parentmenu;
+    private String parentMenu;
 
     /**
      * 图片序列，可以对图片的展示排序进行调整，如为空，则按照id大小排序
      */
-    private String position;
+    private Integer position;
 
     /**
      * 创建人的用户名
      */
     @ManyToOne
-    private User creator;
+    private Account creator;
 
     /**
      * 修改人的用户名
      */
     @ManyToOne
-    private User modifyor;
+    private Account modifier;
 
     public String getTitle() {
         return title;
@@ -58,11 +59,11 @@ public class Pictrue extends TransactionalEntity {
         this.title = title;
     }
 
-    public Integer getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -74,36 +75,36 @@ public class Pictrue extends TransactionalEntity {
         this.explain = explain;
     }
 
-    public String getParentmenu() {
-        return parentmenu;
+    public String getParentMenu() {
+        return parentMenu;
     }
 
-    public void setParentmenu(String parentmenu) {
-        this.parentmenu = parentmenu;
+    public void setParentMenu(String parentMenu) {
+        this.parentMenu = parentMenu;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
-    public User getCreator() {
+    public Account getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(Account creator) {
         this.creator = creator;
     }
 
-    public User getModifyor() {
-        return modifyor;
+    public Account getModifier() {
+        return modifier;
     }
 
-    public void setModifyor(User modifyor) {
-        this.modifyor = modifyor;
+    public void setModifier(Account modifier) {
+        this.modifier = modifier;
     }
 
 }

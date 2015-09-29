@@ -24,6 +24,10 @@ public class RequestContextInitializationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         logger.debug("> doFilter");
 
+        logger.info("Context Path: " + request.getServletContext().getContextPath());
+
+        logger.info("Request Parameter Map: " + String.valueOf(request.getParameterMap()));
+
         RequestContext.init();
 
         chain.doFilter(request, response);

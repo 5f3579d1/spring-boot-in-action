@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/signup", "/admin/login.html").permitAll()
-                .antMatchers("/admin/**", "/manage/**", "/users").authenticated()
+                .antMatchers("/admin/**", "/manage/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/admin/login.html").loginProcessingUrl("/admin/login").defaultSuccessUrl("/admin/index.html").permitAll()

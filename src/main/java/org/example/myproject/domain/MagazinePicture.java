@@ -1,12 +1,14 @@
 package org.example.myproject.domain;
 
+import org.example.myproject.domain.base.Account;
+import org.example.myproject.domain.base.TransactionalEntity;
+
 import javax.persistence.*;
 
 /**
  * Created by k on 9/15/15.
  */
 @Entity
-@Table(name = "whw_magazine_pic")
 public class MagazinePicture extends TransactionalEntity {
 
     /**
@@ -28,12 +30,12 @@ public class MagazinePicture extends TransactionalEntity {
     /**
      * 创建人的用户名
      */
-    private User creator;
+    private Account creator;
 
     /**
      * 修改人的用户名
      */
-    private User modifyor;
+    private Account modifier;
 
     @ManyToOne
     private Magazine magazine;
@@ -62,20 +64,20 @@ public class MagazinePicture extends TransactionalEntity {
         this.position = position;
     }
 
-    public User getCreator() {
+    public Account getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(Account creator) {
         this.creator = creator;
     }
 
-    public User getModifyor() {
-        return modifyor;
+    public Account getModifier() {
+        return modifier;
     }
 
-    public void setModifyor(User modifyor) {
-        this.modifyor = modifyor;
+    public void setModifier(Account modifier) {
+        this.modifier = modifier;
     }
 
     public Magazine getMagazine() {
